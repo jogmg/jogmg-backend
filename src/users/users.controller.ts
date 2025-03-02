@@ -10,15 +10,30 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiResponse } from 'src/utilities/api.response';
+import { ApiResponse } from '../utilities/api.response';
+import { MailerService } from '../utilities/mailer.util';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     const newUser = await this.usersService.create(createUserDto);
+
+    await this.mailerService.sendMail({
+      from: `"${newUser.name}" <${newUser.email}>`,
+      to: 'joattah3@gmail.com',
+      subject: newUser.subject
+        ? `${newUser.name} (${newUser.email}) - ${newUser.subject}`
+        : `${newUser.name} (${newUser.email})`,
+      text: newUser.message,
+      html: `<p>${newUser.message}</p>`,
+    });
+
     return new ApiResponse({
       error: false,
       statusCode: 201,
