@@ -1,28 +1,28 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
   Put,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse } from '../utilities/api.response';
 import { MailerService } from '../utilities/mailer.util';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { UserService } from './user.service';
 
 @Controller('users')
-export class UsersController {
+export class UserController {
   constructor(
-    private readonly usersService: UsersService,
+    private readonly userService: UserService,
     private readonly mailerService: MailerService,
   ) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    const newUser = await this.usersService.create(createUserDto);
+    const newUser = await this.userService.create(createUserDto);
 
     await this.mailerService.sendMail({
       from: `"${newUser.name}" <${newUser.email}>`,
@@ -37,14 +37,14 @@ export class UsersController {
     return new ApiResponse({
       error: false,
       statusCode: 201,
-      message: 'User created successfully',
+      message: 'User created and message sent successfully',
       data: newUser,
     });
   }
 
   @Get()
   async findAll() {
-    const users = await this.usersService.findAll();
+    const users = await this.userService.findAll();
     return new ApiResponse({
       error: false,
       statusCode: 200,
@@ -55,7 +55,7 @@ export class UsersController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    const user = await this.usersService.findOne(id);
+    const user = await this.userService.findOne(id);
     return new ApiResponse({
       error: user ? false : true,
       statusCode: user ? 200 : 404,
@@ -66,7 +66,7 @@ export class UsersController {
 
   @Put(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const updatedUser = await this.usersService.update(id, updateUserDto);
+    const updatedUser = await this.userService.update(id, updateUserDto);
     return new ApiResponse({
       error: updatedUser ? false : true,
       statusCode: updatedUser ? 200 : 404,
@@ -77,7 +77,7 @@ export class UsersController {
 
   @Delete(':id')
   async delete(@Param('id') id: string) {
-    const user = await this.usersService.delete(id);
+    const user = await this.userService.delete(id);
     return new ApiResponse({
       error: user ? false : true,
       statusCode: user ? 200 : 404,

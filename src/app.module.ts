@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { PortfolioModule } from './portfolio/portfolio.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
       cache: true,
     }),
     MongooseModule.forRoot(process.env.MONGO_URL!),
-    UsersModule,
+    UserModule,
+    PortfolioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

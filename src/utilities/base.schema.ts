@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
+import { Document } from 'mongoose';
 
-export class BaseSchema {
-  _id?: mongoose.Types.ObjectId | string;
+export class BaseSchema extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }

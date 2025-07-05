@@ -1,3 +1,15 @@
+interface IApiResponse<T> {
+  error: boolean;
+  statusCode: number;
+  message: string;
+  data?: T;
+  pagination?: {
+    page: number;
+    limit: number;
+    total: number;
+  };
+}
+
 export class ApiResponse<T> {
   readonly error: boolean;
   readonly statusCode: number;
@@ -15,17 +27,7 @@ export class ApiResponse<T> {
     message,
     data,
     pagination,
-  }: {
-    error: boolean;
-    statusCode: number;
-    message: string;
-    data?: T;
-    pagination?: {
-      page: number;
-      limit: number;
-      total: number;
-    };
-  }) {
+  }: IApiResponse<T>) {
     this.error = error;
     this.statusCode = statusCode;
     this.message = message;
