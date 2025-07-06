@@ -7,7 +7,6 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { ApiResponse } from 'src/utilities/api.response';
 import { CreatePortfolioDto } from './dto/create-portfolio.dto';
 import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
 import { PortfolioService } from './portfolio.service';
@@ -18,24 +17,12 @@ export class PortfolioController {
 
   @Post()
   async create(@Body() createPortfolioDto: CreatePortfolioDto) {
-    const newPortfolio = await this.portfolioService.create(createPortfolioDto);
-    return new ApiResponse({
-      error: false,
-      statusCode: 201,
-      message: 'Portfolio created successfully',
-      data: newPortfolio,
-    });
+    return await this.portfolioService.create(createPortfolioDto);
   }
 
   @Get()
   async findAll() {
-    const portfolios = await this.portfolioService.findAll();
-    return new ApiResponse({
-      error: false,
-      statusCode: 200,
-      message: 'Portfolios retrieved successfully',
-      data: portfolios,
-    });
+    return await this.portfolioService.findAll();
   }
 
   @Get(':id')
