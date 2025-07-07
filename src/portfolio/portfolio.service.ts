@@ -20,17 +20,17 @@ export class PortfolioService {
     return await this.portfolioModel.find().sort({ createdAt: -1 });
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await this.portfolioModel.findById(id);
   }
 
-  async update(id: number, updatePortfolioDto: UpdatePortfolioDto) {
+  async update(id: string, updatePortfolioDto: UpdatePortfolioDto) {
     return await this.portfolioModel.findByIdAndUpdate(id, updatePortfolioDto, {
       new: true,
     });
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     return await this.portfolioModel.findByIdAndDelete(id);
   }
 }

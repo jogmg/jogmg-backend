@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/create-portfolio.dto';
 import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
@@ -27,19 +27,19 @@ export class PortfolioController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.portfolioService.findOne(+id);
+    return await this.portfolioService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updatePortfolioDto: UpdatePortfolioDto,
   ) {
-    return await this.portfolioService.update(+id, updatePortfolioDto);
+    return await this.portfolioService.update(id, updatePortfolioDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.portfolioService.delete(+id);
+  async delete(@Param('id') id: string) {
+    return await this.portfolioService.delete(id);
   }
 }
