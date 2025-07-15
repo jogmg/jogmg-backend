@@ -23,8 +23,7 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT ?? 5000);
-  // setInterval(reloadWebsite, (60 * 60 * 1000));
-  setInterval(reloadWebsite, 30000);
+  setInterval(reloadWebsite, (60 * 60 * 1000));
 }
 
 bootstrap();
