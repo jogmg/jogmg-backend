@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateWorkExperienceDto {
   @IsNotEmpty()
@@ -10,7 +10,7 @@ export class CreateWorkExperienceDto {
   @IsNotEmpty()
   date: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   imgSrc: string;
 
   @IsNotEmpty()

@@ -6,7 +6,7 @@ export class Skill extends BaseSchema {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop()
   imgSrc: string;
 }
 

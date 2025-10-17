@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateEducationDto {
   @IsNotEmpty()
@@ -10,6 +10,6 @@ export class CreateEducationDto {
   @IsNotEmpty()
   date: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   imgSrc: string;
 }

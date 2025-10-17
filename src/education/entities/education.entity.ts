@@ -12,7 +12,7 @@ export class Education extends BaseSchema {
   @Prop({ required: true })
   date: string;
 
-  @Prop({ required: true })
+  @Prop()
   imgSrc: string;
 }
 

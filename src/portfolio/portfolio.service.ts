@@ -17,7 +17,7 @@ export class PortfolioService {
   }
 
   async findAll() {
-    return await this.portfolioModel.find().sort({ createdAt: -1 });
+    return await this.portfolioModel.find().sort({ updatedAt: -1 });
   }
 
   async findOne(id: string) {
