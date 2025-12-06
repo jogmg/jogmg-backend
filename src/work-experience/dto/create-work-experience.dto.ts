@@ -11,9 +11,9 @@ export class CreateWorkExperienceDto {
   date: string;
 
   @IsOptional()
-  imgSrc: string;
+  imgSrc?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
-  descs: string[];
+  descs?: string[];
 }

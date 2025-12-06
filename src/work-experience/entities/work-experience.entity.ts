@@ -13,10 +13,11 @@ export class WorkExperience extends BaseSchema {
   date: string;
 
   @Prop()
-  imgSrc: string;
+  imgSrc?: string;
 
-  @Prop({ required: true })
-  descs: string[];
+  @Prop()
+  descs?: string[];
 }
 
-export const WorkExperienceSchema = SchemaFactory.createForClass(WorkExperience);
+export const WorkExperienceSchema =
+  SchemaFactory.createForClass(WorkExperience);
