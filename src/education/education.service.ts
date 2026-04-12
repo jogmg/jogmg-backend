@@ -16,7 +16,7 @@ export class EducationService {
   }
 
   async findAll() {
-    return await this.educationModel.find().sort({ createdAt: -1 });
+    return await this.educationModel.find().sort({ updatedAt: -1 });
   }
 
   async findOne(id: string) {

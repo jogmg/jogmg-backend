@@ -17,7 +17,7 @@ export class WorkExperienceService {
   }
 
   async findAll() {
-    return await this.workExperienceModel.find().sort({ createdAt: -1 });
+    return await this.workExperienceModel.find().sort({ updatedAt: -1 });
   }
 
   async findOne(id: string) {

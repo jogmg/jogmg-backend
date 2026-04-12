@@ -16,7 +16,7 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userModel.find().sort({ createdAt: -1 });
+    return await this.userModel.find().sort({ updatedAt: -1 });
   }
 
   async findOne(id: string) {

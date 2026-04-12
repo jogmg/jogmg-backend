@@ -16,7 +16,7 @@ export class SkillService {
   }
 
   async findAll() {
-    return await this.skillModel.find().sort({ createdAt: -1 });
+    return await this.skillModel.find().sort({ updatedAt: -1 });
   }
 
   async findOne(id: string) {
