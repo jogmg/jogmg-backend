@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
 import { IDesc } from '../entities/portfolio.entity';
 
 export class CreatePortfolioDto {
@@ -11,11 +11,11 @@ export class CreatePortfolioDto {
   @IsNotEmpty()
   mainUrl: string;
 
-  @IsNotEmpty()
-  ctaUrl: string;
+  @IsOptional()
+  ctaUrl?: string;
 
-  @IsNotEmpty()
-  ctaType: string;
+  @IsOptional()
+  ctaType?: string;
 
   @IsNotEmpty()
   @IsArray()

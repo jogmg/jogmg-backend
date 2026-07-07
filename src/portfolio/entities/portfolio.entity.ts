@@ -17,11 +17,11 @@ export class Portfolio extends BaseSchema {
   @Prop({ required: true })
   mainUrl: string;
 
-  @Prop({ required: true })
-  ctaUrl: string;
+  @Prop()
+  ctaUrl?: string;
 
-  @Prop({ required: true })
-  ctaType: string;
+  @Prop()
+  ctaType?: string;
 
   @Prop({ required: true })
   descs: IDesc[];
